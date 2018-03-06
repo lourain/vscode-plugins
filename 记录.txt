@@ -1,0 +1,63 @@
+﻿cc1.IOS position:fixed少用，sarfri浏览器缘故，给大盒子加了padding或高度后，弹出键盘后，fixed定位的盒子会飘在键盘上刚刚增加的高度
+
+2.onpopstate事件触发是在当前url或history列表内有改动，再点击前进或后退按钮触发。
+history.pushState('','',document.referrer);
+    window.onpopstate = function () {
+    	// window.location.href = document.referrer;
+    	history.back();
+    }
+
+3.一般键盘弹出会触发onresize事件，js生成的弹框输入框最好是在大盒子之内，能避免弹出键盘遮住输入框，然后检查position属性，尽可能的少用到fixed定位
+
+4.position定位居中，left:50% transform:translateX(-50%);  这个会与宽度影响，可以动态的显示文字tips窗口。例子：弹窗tips 文字的长度不是固定的
+
+5.--save-dev 是你开发时候依赖的东西，--save 是你发布之后还依赖的东西
+
+6.http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000062475 起调QQ
+
+7.npm view webpack versions --json
+
+8.vue-cli起的webpack项目 用localhost可以访问，但是切换到ip就不可以访问   将config文件夹内的index.js  localhost配置成0.0.0.0
+
+9.placeholder 颜色设置
+/* input placeholder文字颜色 */
+	input::-webkit-input-placeholder { /* WebKit browsers */
+	    color: rgba(102,210,255,0.3);
+	}
+	input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: rgba(102,210,255,0.3);
+	}
+	input::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: rgba(102,210,255,0.3);
+	}
+	input:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: rgba(102,210,255,0.3);
+	}
+
+10.vue $event._constructed为false时(为false时，是没有这个属性的) 是浏览器原生监听事件
+
+11.vue this.$nextTick() 每次数据变动后会执行此函数进行重绘，可接.then() 去执行dom更新后的操作,此方法在dom更新后执行
+
+12.var x = document.activeElement.tagName;当前获得焦点的元素:
+
+13.vue 第一次页面载入时数据未到，但又有其他的操作，可再元素的外层套一个v-if判断数据是否到达，就不会出现异步问题
+
+13.git reset --hard HEAD 退出merging模式
+
+14.history.back(-1):直接返回当前页的上一页，数据全部消息，是个新页面
+   history.go(-1):也是返回当前页的上一页，不过表单里的数据全部还在
+
+15.router.push({ name: 'user', params: { userId: 123 }})
+   <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+
+16.animate:forword属性 使动画停留在最后的一个状态
+
+17.触发浏览器重绘，getComputedStyle offsetHeight等一些计算属性
+
+18.axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//post请求设置
+
+19.npm config set prefix 生成的全局node_module文件夹一定要把此路径添加到全局路径 NPM_HOME
+
+20.transition:left 1s linear, bottom 1s cubic-bezier(.72, .08, .93, .46) 抛物线动画
+
+21.vue 使用组件时，传入的prop，被组件内部又做了一次修改，然后抛的异常 要注意！！
